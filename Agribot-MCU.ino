@@ -6,7 +6,7 @@
 
 // ── Calibration constants (SR-M31) ────────────────────────────────────────────
 #define SERIAL_BAUD_RATE   115200
-#define SPEED_CM_PER_S     20.0f    // robot linear speed in cm/s
+#define SPEED_CM_PER_S     10.0f    // robot linear speed in cm/s
 #define TURN_DEG_PER_S     90.0f    // robot turn rate in degrees/s
 
 // ── LED pin assignments (SR-M12) ──────────────────────────────────────────────
@@ -185,6 +185,8 @@ static void handleMovement(const char* prefix, float value) {
         Serial.print("ACK\n");
         digitalWrite(PIN_MTR_FWD_A, HIGH);
         digitalWrite(PIN_MTR_FWD_B, HIGH);
+        digitalWrite(PIN_MTR_BWD_A, HIGH);
+        digitalWrite(PIN_MTR_BWD_B, HIGH);
 
     } else if (strcmp(prefix, "BWD") == 0) {
         durationMs = (uint32_t)((value / SPEED_CM_PER_S) * 1000.0f);
